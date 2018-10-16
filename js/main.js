@@ -252,7 +252,7 @@ function zoneReached(lgHS, i, active=true) {
         : hsIdleDmgAdjust;
     RHS += active // Autoclickers or Xyliqil damage increase
         ? Math.min(306, cps) * 2
-        : xylBonus * (ROOT2 ? 1 : 2) + (ACs > 2e9 ? 0 : cps);
+        : xylBonus * 2 + (ACs > 2e9 ? 0 : cps);
     RHS += gildBonus + comboTime;
     RHS += ROOT2 * (i >= 48) * 43.64;   // Gog global DPS boost on Root2
     
