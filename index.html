@@ -23,8 +23,35 @@
     <script src="js/main.js"></script>
     <script src="js/heroes.js"></script>
     <script src="js/root2.js"></script>
+    <script src="js/pako.min.js"></script>
+    <script src="js/readSave.js"></script>
     
     <title>Clicker Heroes Mid/End Game Progression Calculator</title>
+    
+    <style>
+      label {
+        line-height: 38px;
+        margin: 0;
+      }
+      th {
+        vertical-align: middle!important;
+      }
+      @media (max-width: 545px) {
+        table {
+          font-size: 14px;
+        }
+      }
+      @media (max-width: 505px) {
+        table {
+          font-size: 12px;
+        }
+      }
+      @media (max-width: 425px) {
+        table {
+          font-size: 10px;
+        }
+      }
+    </style>
     
 </head>
 
@@ -40,18 +67,14 @@
             <div class="col">
                 <div class="card border-primary">
                     <div class="card-body">
-                        <p>Implements 
-                            <a href="https://www.reddit.com/r/ClickerHeroes/comments/7jpdmw/end_game_zone_200k_progression/">my math results</a> with mid-game extensions. 
-                            For feedback on this tool, please 
-                            <a href="https://www.reddit.com/r/ClickerHeroes/comments/7m5jnd/end_game_zone_200k_progression_calculator">click here</a>. 
-                            <br>You must have at least 1e100 HS to use this tool.
-                            <br>Results may vary slightly from your experience due to outsider levels and other simplifying assumptions.
+                        <p>
+                            <br>This is a modified version of the calculator. Here is the <a href="https://fuws.github.io/clickerheroes-endgame/">original progression calculator</a>.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row font-weight-bold">
+        <div class="row pb-2 font-weight-bold">
             <div class="col">  
                 <div class="card border-primary">
                     <div class="card-body">
@@ -60,11 +83,11 @@
                             <div class="col">
                                 <span class="align-top">Game Version: &nbsp;&nbsp;</span>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" checked="checked" id="gameVanilla">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" checked="checked" id="gameVanilla" onClick="calculateProgression()">
                                   <label class="form-check-label" for="gameVanilla">1.0e11</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gameRoot2">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gameRoot2" onClick="calculateProgression()">
                                   <label class="form-check-label" for="gameRoot2">Root2</label>
                                 </div>
                             </div>
@@ -108,6 +131,63 @@
                                     </div>
                                     <div class="col-8">
                                         <input class="form-control" id="outputTP" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row font-weight-bold">
+            <div class="col">
+                <div class="card border-primary">
+                    <div class="card-body">
+                    
+                        <div class="row pt-2">
+                            <div class="col-sm-6">
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <label for="Xyliqil" data-toggle="tooltip">Xyliqil:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control" placeholder="Xyliqil level" id="xylInput" value=0>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <label for="Chorgorloth" data-toggle="tooltip">Chorgorloth:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control" placeholder="Chorgorloth level" id="chorInput" value=0>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <label for="Ponyboy" data-toggle="tooltip">Ponyboy:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control" placeholder="Ponyboy level" id="ponyInput" value=30>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <label for="Autoclickers" data-toggle="tooltip">Autoclickers:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control" placeholder="Autoclickers" id="ACInput" value=0>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <label for="SaveGame" data-toggle="tooltip">Import Save:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control" placeholder="Paste your Save Here" id="saveInput" spellcheck="false" value="" onblur="readSave()">
                                     </div>
                                 </div>
                             </div>
