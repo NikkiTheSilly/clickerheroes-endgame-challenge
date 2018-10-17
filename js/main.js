@@ -188,7 +188,7 @@ function calculateProgression() {
             ? Math.log10(pony) * 2 + 1
             : Math.log10(pony * pony * 10 + 1);
         if (ANCIENT_SOULS >= 21000) lghsEnd -= zone > 1e6
-            ? Math.log10(400);
+            ? Math.log10(400)
             : Math.log10(20);
         lghsChange = lghsEnd - lghsStart > 50 ? lghsEnd - lghsStart 
             : Math.log10(1 + Math.pow(10, lghsEnd - lghsStart));
