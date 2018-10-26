@@ -161,14 +161,19 @@ function calculateProgression() {
         effectivelghs = lghsStart + Math.log10(1 / 0.95) * chor + hsSplit;
         
         let kumaEffect;
-        if (effectivelghs > 4511) {
+        if (effectivelghs > 4511 && !ROOT2) {
             kumaEffect = 8;
         } else {
             let kumaLevel = Math.floor(effectivelghs / Math.log10(2) - 7);
-            kumaEffect = 8 * (1 - Math.exp(-0.025 * kumaLevel));
+            if (ROOT2) {
+                let a = 2.5 + borb * 0.1 + 0.00008 * borb * borb;
+                kumaEffect = a * Math.log(kumaLevel + 2.719);
+            } else {
+                kumaEffect = 8 * (1 - Math.exp(-0.025 * kumaLevel));
+            }
         }
         
-        borbLimit = kumaEffect * borb / 8 * 5000;
+        borbLimit = ROOT2 ? kumaEffect * 5000 :kumaEffect * borb / 8 * 5000;
         
         if (ROOT2) {
             xylBonus = 0.2505 * (1 - Math.exp(xyl * -0.04)) * (lghsStart + hsSplit + Math.log10(2.5) * 2 / 5);
@@ -187,10 +192,11 @@ function calculateProgression() {
             start = startTL
             if (i === 0 ) console.log("go idle");
         } else {
-            if (zone > MAX_ZONE) zone = MAX_ZONE
+            if (zone > MAX_ZONE) zone = MAX_ZONE;
             let time = (zone - zoneTL) / 8000 * 3600;
             comboTime = Math.log10(time);
             zone = zoneReached(effectivelghs, hnum);
+            if (zone > MAX_ZONE) zone = MAX_ZONE;
         }
         
         var goldBonus = zone > zoneTL && !ROOT2 // Autoclickers or Xyliqil gold increase
