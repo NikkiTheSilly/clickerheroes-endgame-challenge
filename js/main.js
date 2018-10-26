@@ -8,8 +8,10 @@ var ANCIENT_SOULS;
 var xyl;
 var chor;
 var pony;
+var borb;
 var ACs;
 var xylBonus;
+var borbLimit;
 var cps;
 var gildBonus;
 
@@ -70,12 +72,17 @@ function getAdvancedInputs() {
     ponyLevel = Math.floor(ponyLevel);
     $("#ponyInput").val(ponyLevel.toString().replace(/\+/g,''));
     
+    let borbLevel = parseFloat($("#borbInput").val() || 0);
+    //if (!(borbLevel >= 0)) { borbLevel = 0; }
+    borbLevel = Math.floor(borbLevel);
+    $("#borbInput").val(borbLevel.toString().replace(/\+/g,''));
+    
     let autoClickers = parseFloat($("#ACInput").val() || 0);
     if (!(autoClickers >= 0)) { autoClickers = 0; }
     autoClickers = Math.floor(autoClickers);
     $("#ACInput").val(autoClickers.toString().replace(/\+/g,''));
     
-    return [xyliqilLevel, chorLevel, ponyLevel, autoClickers];
+    return [xyliqilLevel, chorLevel, ponyLevel, borbLevel, autoClickers];
 }
 
 function calculateProgression() {
@@ -105,7 +112,8 @@ function calculateProgression() {
     xyl = advancedInputs[0];
     chor = advancedInputs[1];
     pony = advancedInputs[2];
-    ACs = advancedInputs[3];
+    borb = advancedInputs[3];
+    ACs = advancedInputs[4];
     cps = ACs > 4 ? Math.log10(1.5) * (ACs - 1) + 1: Math.log10(ACs + 1) + 1;
     
     var errMsg = "";
@@ -152,6 +160,16 @@ function calculateProgression() {
         comboTime = 0;
         effectivelghs = lghsStart + Math.log10(1 / 0.95) * chor + hsSplit;
         
+        let kumaEffect;
+        if (effectivelghs > 4511) {
+            kumaEffect = 8;
+        } else {
+            let kumaLevel = Math.floor(effectivelghs / Math.log10(2) - 7);
+            kumaEffect = 8 * (1 - Math.exp(-0.025 * kumaLevel));
+        }
+        
+        borbLimit = kumaEffect * borb / 8 * 5000;
+        
         if (ROOT2) {
             xylBonus = 0.2505 * (1 - Math.exp(xyl * -0.04)) * (lghsStart + hsSplit + Math.log10(2.5) * 2 / 5);
         }
@@ -193,6 +211,37 @@ function calculateProgression() {
         lghsChange = lghsEnd - lghsStart > 50 ? lghsEnd - lghsStart 
             : Math.log10(1 + Math.pow(10, lghsEnd - lghsStart));
         
+        let durationSeconds = "test";
+        if (zone > (borbLimit + 499)) {
+            let flatZones = Math.max(0, borbLimit - zoneTL);
+            let n = zone - borbLimit;
+            let highZones = n + (n * n) / 10830;
+            let j = borbLimit < zoneTL ? zoneTL - borbLimit: 0;
+            let preTLMax =  j + (j * j) / 10830;
+            let zonesTraveled = flatZones + highZones - preTLMax;
+            durationSeconds = Math.ceil(zonesTraveled / 8050 * 3600);
+        } else {
+            let activeZones = zone - zoneTL;
+            durationSeconds = Math.floor(activeZones / 8050 * 3600);
+        }
+        let hours = Math.floor(durationSeconds / 3600);
+        let duration;
+        if (hours < 72) {
+            let minutes = Math.floor((durationSeconds - (hours * 3600)) / 60);
+            let seconds = durationSeconds - hours * 3600 - minutes * 60;
+            if (hours   < 10) { hours   = "0" + hours; }
+            if (minutes < 10) { minutes = "0" + minutes; }
+            if (seconds < 10) { seconds = "0" + seconds; }
+            duration = hours + ":" + minutes + ":" + seconds;
+        } else {
+            let dl = durationSeconds;
+            let years = Math.floor(dl / 31557600);
+            dl -= years * 31557600;
+            let days = Math.floor(dl / 86400);
+            dl -= days * 86400;
+            hours = dl / 3600;
+            duration = (years > 0 ? years.toLocaleString() + "y " : "") + days + "d " + hours.toFixed(2) + "h";
+        }
         data.push([
             i,
             lghsStart.toFixed(2),
@@ -200,7 +249,8 @@ function calculateProgression() {
             zone.toFixed(0),
             hlevel.toFixed(0),
             lghsChange.toFixed(2),
-            zoneTL.toFixed(0)
+            zoneTL.toFixed(0),
+            duration
         ])
         if (zone >= MAX_ZONE) { // Stop if encountering infinite ascension
             break;
@@ -211,7 +261,6 @@ function calculateProgression() {
     }
     var t1 = performance.now();
     console.log(t1 - t0);
-    
     $("#progressTbl tbody").html(dataArrayToHTML(data));
 }
 
@@ -302,7 +351,13 @@ function heroUpgradeBaseCost(hnum) {
 function dataArrayToHTML(data) {
     var data2 = [];
     for (i = 0; i < data.length; i++) {
-        data2.push("<td>" + data[i].join("</td><td>") + "</td>");
+        let tdclass = "";
+        if (data[i][6] > borbLimit) {
+            tdclass = "redBG";
+        } else if (data[i][3] > borbLimit) {
+            tdclass = "yellowBG";
+        }
+        data2.push("<td class=" + tdclass + ">" + data[i].join("</td><td>") + "</td>");
     }
     datastr = "<tr>" + data2.join("</tr><tr>") + "</tr";
     return datastr;

@@ -36,6 +36,12 @@
       th {
         vertical-align: middle!important;
       }
+      .yellowBG {
+        background-color: yellow;
+      }
+      .redBG {
+        background-color: red;
+      }
       @media (max-width: 545px) {
         table {
           font-size: 14px;
@@ -176,13 +182,20 @@
                             <div class="col-sm-6">
                                 <div class="row align-items-center">
                                     <div class="col-4">
+                                        <label for="Borb" data-toggle="tooltip">Borb:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control" placeholder="Borb level" id="borbInput" value=0>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-4">
                                         <label for="Autoclickers" data-toggle="tooltip">Autoclickers:</label>
                                     </div>
                                     <div class="col-8">
                                         <input class="form-control" placeholder="Autoclickers" id="ACInput" value=0>
                                     </div>
                                 </div>
-                                <br>
                                 <div class="row align-items-center">
                                     <div class="col-4">
                                         <label for="SaveGame" data-toggle="tooltip">Import Save:</label>
@@ -212,6 +225,7 @@
                             <th>HeroLv</th>
                             <th>+LgHS</th>
                             <th>TLMaxZone</th>
+                            <th>Duration</th>
                         </tr>
                     </thead>
                     <tbody>

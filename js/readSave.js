@@ -22,6 +22,7 @@ function readSave() {
         $("#xylInput").val(data.outsiders.outsiders[1].level);
         $("#chorInput").val(data.outsiders.outsiders[2].level);
         $("#ponyInput").val(data.outsiders.outsiders[5].level);
+        $("#borbInput").val(data.outsiders.outsiders[6].level);
         $("#ACInput").val(data.autoclickers);
 		calculateProgression();
 	} else if (txt)
