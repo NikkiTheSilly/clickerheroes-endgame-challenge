@@ -24,6 +24,8 @@ var hsGoldAdjust = Math.log10(2) / 2 * 3;
 
 var comboTime;
 
+var totalDuration;
+
 function prepareHPScale() {
     if (!ROOT2) {
         HP_SCALE = [[1, 140], [1.55, 1.145]];
@@ -132,6 +134,7 @@ function calculateProgression() {
         $("#inputWarning").html("");
     }
     
+    totalDuration = 0;
     ROOT2 = $("#gameRoot2").prop("checked");
     HEROES = ROOT2 ? HEROES_ROOT2 : HEROES_VANILLA;
     
@@ -229,24 +232,7 @@ function calculateProgression() {
         } else {
             let activeZones = zone - zoneTL;
             durationSeconds = Math.floor(activeZones / 8050 * 3600);
-        }
-        let hours = Math.floor(durationSeconds / 3600);
-        let duration;
-        if (hours < 72) {
-            let minutes = Math.floor((durationSeconds - (hours * 3600)) / 60);
-            let seconds = durationSeconds - hours * 3600 - minutes * 60;
-            if (hours   < 10) { hours   = "0" + hours; }
-            if (minutes < 10) { minutes = "0" + minutes; }
-            if (seconds < 10) { seconds = "0" + seconds; }
-            duration = hours + ":" + minutes + ":" + seconds;
-        } else {
-            let dl = durationSeconds;
-            let years = Math.floor(dl / 31557600);
-            dl -= years * 31557600;
-            let days = Math.floor(dl / 86400);
-            dl -= days * 86400;
-            hours = dl / 3600;
-            duration = (years > 0 ? years.toLocaleString() + "y " : "") + days + "d " + hours.toFixed(2) + "h";
+            totalDuration += durationSeconds;
         }
         data.push([
             i,
@@ -256,7 +242,7 @@ function calculateProgression() {
             hlevel.toFixed(0),
             lghsChange.toFixed(2),
             zoneTL.toFixed(0),
-            duration
+            formatTime(durationSeconds)
         ])
         if (zone >= MAX_ZONE) { // Stop if encountering infinite ascension
             break;
@@ -267,7 +253,28 @@ function calculateProgression() {
     }
     var t1 = performance.now();
     console.log(t1 - t0);
+    console.log("Time until borbLimit:", formatTime(totalDuration));
     $("#progressTbl tbody").html(dataArrayToHTML(data));
+}
+
+function formatTime(durationSeconds) {
+    let hours = Math.floor(durationSeconds / 3600);
+    if (hours < 72) {
+        let minutes = Math.floor((durationSeconds - (hours * 3600)) / 60);
+        let seconds = durationSeconds - hours * 3600 - minutes * 60;
+        if (hours   < 10) { hours   = "0" + hours; }
+        if (minutes < 10) { minutes = "0" + minutes; }
+        if (seconds < 10) { seconds = "0" + seconds; }
+        return hours + ":" + minutes + ":" + seconds;
+    } else {
+        let dl = durationSeconds;
+        let years = Math.floor(dl / 31557600);
+        dl -= years * 31557600;
+        let days = Math.floor(dl / 86400);
+        dl -= days * 86400;
+        hours = dl / 3600;
+        return (years > 0 ? years.toLocaleString() + "y " : "") + days + "d " + hours.toFixed(2) + "h";
+    }
 }
 
 function heroReached(lgHS, start=0, active=true) {
