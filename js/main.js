@@ -190,7 +190,7 @@ function calculateProgression() {
         hnumTL = heroReached(effectivelghs, startTL, active=false);
         zoneTL = zoneReached(effectivelghs, hnumTL, active=false);
         
-        gilds = Math.floor(zoneTL / 10 - 10);
+        gilds = Math.max(gilds, Math.floor(zoneTL / 10 - 10));
         gildBonus = Math.log10(gilds);
         
         hnumTL = heroReached(effectivelghs, hnumTL, active=false);
@@ -209,7 +209,7 @@ function calculateProgression() {
             } else {
                 let time = (zone - zoneTL) / 8050 * 3600;
                 comboTime = Math.max(0, Math.log10(time));
-                gilds = Math.floor(zone / 10 - 10);
+                gilds = Math.max(gilds, Math.floor(zone / 10 - 10));
                 gildBonus = Math.log10(gilds);
                 hnum = heroReached(effectivelghs, hnum);
                 zone = zoneReached(effectivelghs, hnum);
