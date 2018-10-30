@@ -14,6 +14,7 @@ var xylBonus;
 var borbLimit;
 var cps;
 var gildBonus;
+var classes;
 
 var goldBonus140 = Math.log10(1.6 / 1.15) * 139;
     goldBonus140 -= 2; // 1% TCC
@@ -117,6 +118,9 @@ function calculateProgression() {
     borb = advancedInputs[3];
     ACs = advancedInputs[4];
     cps = ACs > 4 ? Math.log10(1.5) * (ACs - 1) + 1: Math.log10(ACs + 1) + 1;
+    var ponyBonus = pony > 100
+        ? Math.log10(pony) * 2 + 1
+        : Math.log10(pony * pony * 10 + 1);
     
     var errMsg = "";
     if (isNaN(ANCIENT_SOULS) || isNaN(lghs) ||
@@ -146,14 +150,13 @@ function calculateProgression() {
         0.25 - 0.23 * Math.exp(-0.0003 * ANCIENT_SOULS);
     $("#outputTP").val(tp.toFixed(6));
     
-    var gilds = Math.max(1,Math.floor(lghs / Math.log10(1 + tp) / 10));
-    gildBonus = Math.log10(gilds);
-    
     var data = [];
     var start = 0;
     var startTL = 0;
     var lghsStart = lghs;
     var hlevel, lghsEnd;
+    
+    classes = [];
     
     var t0 = performance.now();
     
@@ -162,6 +165,8 @@ function calculateProgression() {
     for (i = 0; i < 250; i++) {
         comboTime = 0;
         effectivelghs = lghsStart + Math.log10(1 / 0.95) * chor + hsSplit;
+        let gilds = Math.max(1, Math.floor((lghsStart - ponyBonus) / Math.log10(1 + tp) / 10 - 10));
+        gildBonus = Math.log10(gilds);
         
         let kumaEffect;
         if (effectivelghs > 4511 && !ROOT2) {
@@ -182,24 +187,34 @@ function calculateProgression() {
             xylBonus = 0.2505 * (1 - Math.exp(xyl * -0.04)) * (lghsStart + hsSplit + Math.log10(2.5) * 2 / 5);
         }
         
-        hnum = heroReached(effectivelghs, start);
-        zone = zoneReached(effectivelghs, hnum);
-        
         hnumTL = heroReached(effectivelghs, startTL, active=false);
         zoneTL = zoneReached(effectivelghs, hnumTL, active=false);
         
+        gilds = Math.floor(zoneTL / 10 - 10);
+        gildBonus = Math.log10(gilds);
+        
+        hnumTL = heroReached(effectivelghs, hnumTL, active=false);
+        zoneTL = zoneReached(effectivelghs, hnumTL, active=false);
+        
+        hnum = heroReached(effectivelghs, start);
+        zone = zoneReached(effectivelghs, hnum);
+        
         if (zoneTL > zone) {
-            if (zoneTL > MAX_ZONE) zoneTL = MAX_ZONE
+            if (zoneTL > MAX_ZONE) zoneTL = MAX_ZONE;
             hnum = hnumTL;
             zone = zoneTL;
-            start = startTL
-            if (i === 0 ) console.log("go idle");
         } else {
-            if (zone > MAX_ZONE) zone = MAX_ZONE;
-            let time = (zone - zoneTL) / 8000 * 3600;
-            comboTime = Math.log10(time);
-            zone = zoneReached(effectivelghs, hnum);
-            if (zone > MAX_ZONE) zone = MAX_ZONE;
+            if (zone > MAX_ZONE) {
+                zone = MAX_ZONE;
+            } else {
+                let time = (zone - zoneTL) / 8050 * 3600;
+                comboTime = Math.max(0, Math.log10(time));
+                gilds = Math.floor(zone / 10 - 10);
+                gildBonus = Math.log10(gilds);
+                hnum = heroReached(effectivelghs, hnum);
+                zone = zoneReached(effectivelghs, hnum);
+                if (zone > MAX_ZONE) zone = MAX_ZONE;
+            }
         }
         
         var goldBonus = zone > zoneTL // Autoclickers or Xyliqil gold increase
@@ -211,16 +226,20 @@ function calculateProgression() {
             Math.log10(getHeroAttr(hnum, "costScale"));
         lghsEnd = (zone / 5 - 20) * Math.log10(1 + tp) 
             + Math.log10(20 * (1 + tp) / tp);
-        lghsEnd += pony > 100
-            ? Math.log10(pony) * 2 + 1
-            : Math.log10(pony * pony * 10 + 1);
+        lghsEnd += ponyBonus;
         if (ANCIENT_SOULS >= 21000 && !ROOT2) lghsEnd -= zone > 1e6
             ? Math.log10(400)
             : Math.log10(20);
         lghsChange = lghsEnd - lghsStart > 50 ? lghsEnd - lghsStart 
             : Math.log10(1 + Math.pow(10, lghsEnd - lghsStart));
         
-        let durationSeconds = "test";
+        if (zoneTL > (borbLimit + 499)) {
+            classes[i] = "redBG";
+        } else if (zone > (borbLimit + 499)) {
+            classes[i] = "yellowBG";
+        }
+        
+        let durationSeconds = 0;
         if (zone > (borbLimit + 499)) {
             let flatZones = Math.max(0, borbLimit - zoneTL);
             let n = zone - borbLimit;
@@ -229,10 +248,10 @@ function calculateProgression() {
             let preTLMax =  j + (j * j) / 10830;
             let zonesTraveled = flatZones + highZones - preTLMax;
             durationSeconds = Math.ceil(zonesTraveled / 8050 * 3600);
-        } else {
+        } else if (zone > zoneTL) {
             let activeZones = zone - zoneTL;
             durationSeconds = Math.floor(activeZones / 8050 * 3600);
-            totalDuration += durationSeconds + 20000 / 8050 * 3600;
+            totalDuration += durationSeconds + 7200;
         }
         data.push([
             i,
@@ -252,7 +271,7 @@ function calculateProgression() {
         startTL = hnumTL;
     }
     var t1 = performance.now();
-    console.log(t1 - t0);
+    console.log("Performance:", t1 - t0);
     console.log("Time until borbLimit:", formatTime(totalDuration));
     $("#progressTbl tbody").html(dataArrayToHTML(data));
 }
@@ -364,12 +383,7 @@ function heroUpgradeBaseCost(hnum) {
 function dataArrayToHTML(data) {
     var data2 = [];
     for (i = 0; i < data.length; i++) {
-        let tdclass = "";
-        if (data[i][6] > borbLimit) {
-            tdclass = "redBG";
-        } else if (data[i][3] > borbLimit) {
-            tdclass = "yellowBG";
-        }
+        tdclass = classes[i] || "";
         data2.push("<td class=" + tdclass + ">" + data[i].join("</td><td>") + "</td>");
     }
     datastr = "<tr>" + data2.join("</tr><tr>") + "</tr";
