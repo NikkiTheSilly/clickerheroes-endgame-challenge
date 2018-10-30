@@ -184,7 +184,10 @@ function calculateProgression() {
         borbLimit = ROOT2 ? kumaEffect * 5000 :kumaEffect * borb / 8 * 5000;
         
         if (ROOT2) {
-            xylBonus = 0.2505 * (1 - Math.exp(xyl * -0.04)) * (lghsStart + hsSplit + Math.log10(2.5) * 2 / 5);
+            let nogBonus = xyl > 0 ? 1 + 0.2505 * (1 - Math.exp(xyl * -0.04)) : 0;
+            let nog = (lghsStart + Math.log10(1 / 0.95) * chor + hsSplit) / 2.5 + Math.log10(2.5) * 2 / 5;
+            xylBonus = nog * nogBonus;
+            console.log(nog,nogBonus,xylBonus)
         }
         
         hnumTL = heroReached(effectivelghs, startTL, active=false);
@@ -336,7 +339,9 @@ function zoneReached(lgHS, i, active=true) {
         : hsIdleDmgAdjust;
     RHS += active // Autoclickers or Xyliqil damage increase
         ? Math.min(306, cps) * 2
-        : xylBonus * 2 + (ACs > 2e9 ? 0 : cps);
+        : ROOT2
+            ? xylBonus + (ACs > 2e9 ? 0 : cps)
+            : xylBonus * 2 + (ACs > 2e9 ? 0 : cps);
     RHS += gildBonus + comboTime;
     RHS += ROOT2 * (i >= 48) * 43.64;   // Gog global DPS boost on Root2
     
