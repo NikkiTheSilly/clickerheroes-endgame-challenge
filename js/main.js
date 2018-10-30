@@ -202,9 +202,9 @@ function calculateProgression() {
             if (zone > MAX_ZONE) zone = MAX_ZONE;
         }
         
-        var goldBonus = zone > zoneTL && !ROOT2 // Autoclickers or Xyliqil gold increase
+        var goldBonus = zone > zoneTL // Autoclickers or Xyliqil gold increase
             ? Math.min(306, cps)
-            : xylBonus;
+            : ROOT2 ? 0 : xylBonus;
         
         hlevel = (zone * Math.log10(GOLD_SCALE) + 1.5 * effectivelghs + hsGoldAdjust + goldBonus140 
             - getHeroAttr(hnum, "lv1cost") + goldBonus - Math.log10(15)) / 
