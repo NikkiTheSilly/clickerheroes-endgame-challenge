@@ -147,7 +147,7 @@ function calculateProgression() {
     $("#outputTP").val(tp.toFixed(6));
     
     var gilds = Math.max(1,Math.floor(lghs / Math.log10(1 + tp) / 10));
-    gildBonus = Math.log10(gilds) + (ROOT2 ? Math.log10(1.01) * gilds : 0);
+    gildBonus = Math.log10(gilds);
     
     var data = [];
     var start = 0;
@@ -232,7 +232,7 @@ function calculateProgression() {
         } else {
             let activeZones = zone - zoneTL;
             durationSeconds = Math.floor(activeZones / 8050 * 3600);
-            totalDuration += durationSeconds;
+            totalDuration += durationSeconds + 20000 / 8050 * 3600;
         }
         data.push([
             i,
