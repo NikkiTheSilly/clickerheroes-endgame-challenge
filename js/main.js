@@ -187,7 +187,6 @@ function calculateProgression() {
             let nogBonus = xyl > 0 ? 1 + 0.2505 * (1 - Math.exp(xyl * -0.04)) : 0;
             let nog = (lghsStart + Math.log10(1 / 0.95) * chor + hsSplit) / 2.5 + Math.log10(2.5) * 2 / 5;
             xylBonus = nog * nogBonus;
-            console.log(nog,nogBonus,xylBonus)
         }
         
         hnumTL = heroReached(effectivelghs, startTL, active=false);
