@@ -26,6 +26,7 @@ var hsGoldAdjust = Math.log10(2) / 2 * 3;
 var comboTime;
 
 var totalDuration;
+var borbLimitReached;
 
 function prepareHPScale() {
     if (!ROOT2) {
@@ -139,6 +140,7 @@ function calculateProgression() {
     }
     
     totalDuration = 0;
+    borbLimitReached = false;
     ROOT2 = $("#gameRoot2").prop("checked");
     HEROES = ROOT2 ? HEROES_ROOT2 : HEROES_VANILLA;
     
@@ -250,10 +252,15 @@ function calculateProgression() {
             let preTLMax =  j + (j * j) / 10830;
             let zonesTraveled = flatZones + highZones - preTLMax;
             durationSeconds = Math.ceil(zonesTraveled / 8050 * 3600);
+            if (!borbLimitReached) {
+                let activeZones = borbLimit + 500 - zoneTL;
+                totalDuration += Math.floor(activeZones / 8050 * 3600);
+                borbLimitReached = true;
+            }
         } else if (zone > zoneTL) {
             let activeZones = zone - zoneTL;
             durationSeconds = Math.floor(activeZones / 8050 * 3600);
-            totalDuration += durationSeconds + 7200;
+            totalDuration += durationSeconds;
         }
         data.push([
             i,
