@@ -60,10 +60,6 @@ function getHeroAttr(hnum, attr) {
     return HEROES[hnum][HERO_TABLE_COLUMNS[attr]];
 }
 
-function setHeroAttr(hnum, attr, num) {
-    HEROES[hnum][HERO_TABLE_COLUMNS[attr]] = num;
-}
-
 function getAdvancedInputs() {
     let xyliqilLevel = parseFloat($("#xylInput").val() || 0);
     if (xyliqilLevel < 0) { xyliqilLevel = 0; }
