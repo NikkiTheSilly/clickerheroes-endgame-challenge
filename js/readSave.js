@@ -33,6 +33,7 @@ function readSave() {
         $("#chorInput").val(data.outsiders.outsiders[2].level);
         $("#ponyInput").val(data.outsiders.outsiders[5].level);
         $("#borbInput").val(data.outsiders.outsiders[6].level);
+		$("#dogcogInput").val(data.ancients.ancients[11].level);
         $("#ACInput").val(data.autoclickers);
 		calculateProgression();
 	} else if (txt)

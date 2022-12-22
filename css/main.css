@@ -1,0 +1,31 @@
+label {
+    line-height: 38px;
+    margin: 0;
+}
+
+th {
+    vertical-align: middle!important;
+}
+
+.yellowBG {
+    background-color: yellow;
+}
+.redBG {
+    background-color: red;
+}
+@media (max-width: 545px) {
+    table {
+        font-size: 14px;
+    }
+}
+@media (max-width: 505px) {
+    table {
+        font-size: 12px;
+    }
+}
+@media (max-width: 425px) {
+    table {
+        font-size: 10px;
+    }
+}
+

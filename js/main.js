@@ -9,6 +9,7 @@ var xyl;
 var chor;
 var pony;
 var borb;
+var dogcog;
 var ACs;
 var xylBonus;
 var borbLimit;
@@ -59,34 +60,44 @@ function getHeroAttr(hnum, attr) {
     return HEROES[hnum][HERO_TABLE_COLUMNS[attr]];
 }
 
+function setHeroAttr(hnum, attr, num) {
+    HEROES[hnum][HERO_TABLE_COLUMNS[attr]] = num;
+}
+
 function getAdvancedInputs() {
     let xyliqilLevel = parseFloat($("#xylInput").val() || 0);
-    if (!(xyliqilLevel >= 0)) { xyliqilLevel = 0; }
+    if (xyliqilLevel < 0) { xyliqilLevel = 0; }
     xyliqilLevel = Math.floor(xyliqilLevel);
     $("#xylInput").val(xyliqilLevel.toString().replace(/\+/g,''));
 
     let chorLevel = parseFloat($("#chorInput").val() || 0);
-    if (!(chorLevel >= 0)) { chorLevel = 0; }
+    if (chorLevel < 0) { chorLevel = 0; }
     if (chorLevel > 150) { chorLevel = 150; }
     chorLevel = Math.floor(chorLevel);
     $("#chorInput").val(chorLevel.toString().replace(/\+/g,''));
 
     let ponyLevel = parseFloat($("#ponyInput").val() || 0);
-    if (!(ponyLevel >= 0)) { ponyLevel = 30; }
+    if (ponyLevel < 0) { ponyLevel = 30; }
     ponyLevel = Math.floor(ponyLevel);
     $("#ponyInput").val(ponyLevel.toString().replace(/\+/g,''));
     
     let borbLevel = parseFloat($("#borbInput").val() || 0);
-    //if (!(borbLevel >= 0)) { borbLevel = 0; }
+    if (borbLevel < 0) { borbLevel = 0; }
     borbLevel = Math.floor(borbLevel);
     $("#borbInput").val(borbLevel.toString().replace(/\+/g,''));
     
+    let dogcogLevel = parseFloat($("#dogcogInput").val() || 0);
+    if (dogcogLevel < 0) { dogcogLevel = 0; }
+    if (dogcogLevel > 3743) { dogcogLevel = 3743; }
+    dogcogLevel = Math.floor(dogcogLevel);
+    $("#dogcogInput").val(dogcogLevel.toString().replace(/\+/g,''));
+
     let autoClickers = parseFloat($("#ACInput").val() || 0);
-    if (!(autoClickers >= 0)) { autoClickers = 0; }
+    if (autoClickers < 0) { autoClickers = 0; }
     autoClickers = Math.floor(autoClickers);
     $("#ACInput").val(autoClickers.toString().replace(/\+/g,''));
     
-    return [xyliqilLevel, chorLevel, ponyLevel, borbLevel, autoClickers];
+    return [xyliqilLevel, chorLevel, ponyLevel, borbLevel, dogcogLevel, autoClickers];
 }
 
 function calculateProgression() {
@@ -117,8 +128,11 @@ function calculateProgression() {
     chor = advancedInputs[1];
     pony = advancedInputs[2];
     borb = advancedInputs[3];
-    ACs = advancedInputs[4];
+    dogcog = advancedInputs[4];
+    ACs = advancedInputs[5];
     cps = ACs > 4 ? Math.log10(1.5) * (ACs - 1) + 1: Math.log10(ACs + 1) + 1;
+    dogcogScaling = (99.99999999 * (1 - Math.pow(Math.E, -.01 * dogcog))) / 100;
+
     var ponyBonus = pony > 100
         ? Math.log10(pony) * 2 + 1
         : Math.log10(pony * pony * 10 + 1);
@@ -202,7 +216,7 @@ function calculateProgression() {
         
         hnum = heroReached(effectivelghs, start);
         zone = zoneReached(effectivelghs, hnum);
-        
+
         if (zoneTL > zone) {
             if (zoneTL > MAX_ZONE) zoneTL = MAX_ZONE;
             hnum = hnumTL;
@@ -226,7 +240,7 @@ function calculateProgression() {
             : ROOT2 ? 0 : xylBonus;
         
         hlevel = (zone * Math.log10(GOLD_SCALE) + 1.5 * effectivelghs + hsGoldAdjust + goldBonus140 
-            - getHeroAttr(hnum, "lv1cost") + goldBonus - Math.log10(15)) / 
+            - (getHeroAttr(hnum, "lv1cost") + dogcogScaling) + goldBonus - Math.log10(15)) / 
             Math.log10(getHeroAttr(hnum, "costScale"));
         lghsEnd = (zone / 5 - 20) * Math.log10(1 + tp) 
             + Math.log10(20 * (1 + tp) / tp);
@@ -330,7 +344,7 @@ function zoneReached(lgHS, i, active=true) {
     let lgDmgMultPerZone = Math.log10(GOLD_SCALE) * R + 
         ROOT2 * (ANCIENT_SOULS >= 6400) * Math.log10(1.01) / 10;
     let efficiency = getHeroAttr(i, 'dps') - 
-        R * (getHeroAttr(i, "lv1cost") + 175 * Math.log10(getHeroAttr(i, "costScale")));
+        R * ((getHeroAttr(i, "lv1cost") + dogcogScaling) + 175 * Math.log10(getHeroAttr(i, "costScale")));
 
     let startingGold = hsGoldAdjust + 1.5 * lgHS + goldBonus140 - Math.log10(15);
     startingGold += active // Autoclickers or Xyliqil gold increase
@@ -388,7 +402,7 @@ function heroUpgradeBaseCost(hnum) {
     // Force Yachiyl7 on Root2 to use Yachiyl6's cost scaling
     let costScale = getHeroAttr(
         hnum - (ROOT2 && hnum == HEROES.length - 1), "costScale");
-    return getHeroAttr(hnum, "lv1cost") + Math.log10(costScale) * level;
+    return (getHeroAttr(hnum, "lv1cost") + dogcogScaling) + Math.log10(costScale) * level;
 }
 
 function dataArrayToHTML(data) {
