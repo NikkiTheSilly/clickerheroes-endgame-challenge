@@ -60,6 +60,10 @@ function getHeroAttr(hnum, attr) {
     return HEROES[hnum][HERO_TABLE_COLUMNS[attr]];
 }
 
+function costReduction(cost) {
+    return cost + Math.log10(1 - dogcogEffect);
+}
+
 function getAdvancedInputs() {
     let xyliqilLevel = parseFloat($("#xylInput").val() || 0);
     if (xyliqilLevel < 0) { xyliqilLevel = 0; }
@@ -127,7 +131,7 @@ function calculateProgression() {
     dogcog = advancedInputs[4];
     ACs = advancedInputs[5];
     cps = ACs > 4 ? Math.log10(1.5) * (ACs - 1) + 1: Math.log10(ACs + 1) + 1;
-    dogcogScaling = (99.99999999 * (1 - Math.pow(Math.E, -.01 * dogcog))) / 100;
+    dogcogEffect = .9999999999 * (1 - Math.pow(Math.E, -.01 * dogcog));
 
     var ponyBonus = pony > 100
         ? Math.log10(pony) * 2 + 1
@@ -236,7 +240,7 @@ function calculateProgression() {
             : ROOT2 ? 0 : xylBonus;
         
         hlevel = (zone * Math.log10(GOLD_SCALE) + 1.5 * effectivelghs + hsGoldAdjust + goldBonus140 
-            - (getHeroAttr(hnum, "lv1cost") + dogcogScaling) + goldBonus - Math.log10(15)) / 
+            - costReduction(getHeroAttr(hnum, "lv1cost")) + goldBonus - Math.log10(15)) / 
             Math.log10(getHeroAttr(hnum, "costScale"));
         lghsEnd = (zone / 5 - 20) * Math.log10(1 + tp) 
             + Math.log10(20 * (1 + tp) / tp);
@@ -340,7 +344,7 @@ function zoneReached(lgHS, i, active=true) {
     let lgDmgMultPerZone = Math.log10(GOLD_SCALE) * R + 
         ROOT2 * (ANCIENT_SOULS >= 6400) * Math.log10(1.01) / 10;
     let efficiency = getHeroAttr(i, 'dps') - 
-        R * ((getHeroAttr(i, "lv1cost") + dogcogScaling) + 175 * Math.log10(getHeroAttr(i, "costScale")));
+        R * (costReduction(getHeroAttr(i, "lv1cost")) + 175 * Math.log10(getHeroAttr(i, "costScale")));
 
     let startingGold = hsGoldAdjust + 1.5 * lgHS + goldBonus140 - Math.log10(15);
     startingGold += active // Autoclickers or Xyliqil gold increase
@@ -398,7 +402,7 @@ function heroUpgradeBaseCost(hnum) {
     // Force Yachiyl7 on Root2 to use Yachiyl6's cost scaling
     let costScale = getHeroAttr(
         hnum - (ROOT2 && hnum == HEROES.length - 1), "costScale");
-    return (getHeroAttr(hnum, "lv1cost") + dogcogScaling) + Math.log10(costScale) * level;
+    return costReduction(getHeroAttr(hnum, "lv1cost")) + Math.log10(costScale) * level;
 }
 
 function dataArrayToHTML(data) {
