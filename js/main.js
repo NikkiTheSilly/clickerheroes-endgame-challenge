@@ -137,8 +137,8 @@ function calculateProgression() {
     if (isNaN(ANCIENT_SOULS) || isNaN(lghs) ||
        $("#gameRoot2").prop("checked") == $("#gameVanilla").prop("checked")) {
         errMsg = "Please enter all inputs";
-    } else if (lghs < 100) {
-        errMsg = "Requires lgHS >= 100";
+    } else if (lghs < 21) {
+        errMsg = "Requires lgHS >= 21";
     }
     
     if (errMsg.length > 0) {
