@@ -9,9 +9,11 @@ th {
 
 .yellowBG {
     background-color: yellow;
+    color: black;
 }
 .redBG {
     background-color: red;
+    color: black;
 }
 @media (max-width: 545px) {
     table {
