@@ -28,7 +28,7 @@ function readSave() {
 			data = JSON.parse(atob(txt));
 		}
 		$("#inputAS").val(data.ancientSoulsTotal);
-        $("#inputLgHS").val(data.stats.currentAscension.heroSoulsStart);
+        $("#inputLgHS").val(data.stats.heroSouls);
         $("#xylInput").val(data.outsiders.outsiders[1].level);
         $("#chorInput").val(data.outsiders.outsiders[2].level);
         $("#ponyInput").val(data.outsiders.outsiders[5].level);
