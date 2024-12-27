@@ -15,8 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="Kumawakamaru.png">
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" id="theme" href="css/darkmode.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     
@@ -25,42 +27,21 @@
     <script src="js/root2.js"></script>
     <script src="js/pako.min.js"></script>
     <script src="js/readSave.js"></script>
-    
-    <title>Clicker Heroes Mid/End Game Progression Calculator</title>
-    
-    <style>
-      label {
-        line-height: 38px;
-        margin: 0;
-      }
-      th {
-        vertical-align: middle!important;
-      }
-      .yellowBG {
-        background-color: yellow;
-      }
-      .redBG {
-        background-color: red;
-      }
-      @media (max-width: 545px) {
-        table {
-          font-size: 14px;
-        }
-      }
-      @media (max-width: 505px) {
-        table {
-          font-size: 12px;
-        }
-      }
-      @media (max-width: 425px) {
-        table {
-          font-size: 10px;
-        }
-      }
-    </style>
-    
-</head>
 
+    <script>
+        function changeTheme() {
+            var theme = document.getElementById("theme");
+            if (theme.getAttribute('href') == 'css/lightmode.css') {
+                theme.setAttribute('href', 'css/darkmode.css');
+            } else {
+                theme.setAttribute('href', 'css/lightmode.css');
+            }
+        }
+    </script>
+
+    <title>Clicker Heroes Mid/End Game Progression Calculator</title>
+
+</head>
 <body>
     <div class="container">
         <div class="row">
@@ -75,7 +56,7 @@
                     <div class="card-body">
                         <p>
                             <br>This is a modified version of the calculator. Here is the <a href="https://fuws.github.io/clickerheroes-endgame/">Original progression calculator</a>
-                            made by <a href="https://www.reddit.com/user/qubit64/">/u/qubit64</a></h6>.
+                            made by <a href="https://www.reddit.com/user/qubit64/">/u/qubit64</a></h6>
                         </p>
                     </div>
                 </div>
@@ -85,21 +66,20 @@
             <div class="col">  
                 <div class="card border-primary">
                     <div class="card-body">
-                        
                         <div class="row text-center">
                             <div class="col">
                                 <span class="align-top">Game Version: &nbsp;&nbsp;</span>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" checked="checked" id="gameVanilla" onClick="calculateProgression()">
-                                  <label class="form-check-label" for="gameVanilla">1.0e11</label>
+                                    <input class="form-check-input" type="radio" name="versionOptions" checked="checked" id="gameVanilla" onClick="calculateProgression()">
+                                    <label class="form-check-label" for="gameVanilla">1.0e11</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gameRoot2" onClick="calculateProgression()">
-                                  <label class="form-check-label" for="gameRoot2">Root2</label>
+                                    <input class="form-check-input" type="radio" name="versionOptions" id="gameRoot2" onClick="calculateProgression()">
+                                    <label class="form-check-label" for="gameRoot2">Root2</label>
                                 </div>
+                                <br><button class="buttonTheme" onclick="changeTheme()" >Toggle dark mode</button>
                             </div>
                         </div>
-                        
                         <div class="row pt-2">
                             <div class="col-sm-6">
                                 <div class="row align-items-center">
@@ -137,7 +117,7 @@
                                         <label for="outputTP">TP:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input class="form-control" id="outputTP" disabled>
+                                        <input class="form-control" id="outputTP" value=0 disabled>
                                     </div>
                                 </div>
                             </div>
@@ -178,6 +158,14 @@
                                         <input class="form-control" placeholder="Ponyboy level" id="ponyInput" value=30>
                                     </div>
                                 </div>
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <label for="SaveGame" data-toggle="tooltip">Import Save:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control" placeholder="Paste your Save Here" id="saveInput" spellcheck="false" value="" onblur="readSave()">
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="row align-items-center">
@@ -190,18 +178,18 @@
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <label for="Autoclickers" data-toggle="tooltip">Autoclickers:</label>
+                                        <label for="Dogcog" data-toggle="tooltip">Dogcog:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input class="form-control" placeholder="Autoclickers" id="ACInput" value=0>
+                                        <input class="form-control" placeholder="Dogcog" id="dogcogInput" value=0>
                                     </div>
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <label for="SaveGame" data-toggle="tooltip">Import Save:</label>
+                                        <label for="Autoclickers" data-toggle="tooltip">Autoclickers:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input class="form-control" placeholder="Paste your Save Here" id="saveInput" spellcheck="false" value="" onblur="readSave()">
+                                        <input class="form-control" placeholder="Autoclickers" id="ACInput" value=0>
                                     </div>
                                 </div>
                             </div>
@@ -236,5 +224,4 @@
     </div>
 
 </body>
-
 </html>

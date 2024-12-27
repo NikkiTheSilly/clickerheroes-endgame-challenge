@@ -1,0 +1,42 @@
+body {
+    background-color: white;
+}
+
+label {
+    background-color: white;
+}
+
+th {
+    background-color: white;
+}
+
+p {
+    color: black;
+}
+
+.buttonTheme {
+    background-color: white;
+    color: black;
+}
+
+.card-body {
+    background-color: white;
+}
+
+.theme {
+    background-color: white;
+}
+
+.col {
+    color: black;
+}
+
+.form-control {
+    background-color: white;
+    color: black;
+}
+
+#outputTP {
+    background-color: white;
+    color: black;
+}

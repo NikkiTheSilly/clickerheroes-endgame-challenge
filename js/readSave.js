@@ -28,11 +28,12 @@ function readSave() {
 			data = JSON.parse(atob(txt));
 		}
 		$("#inputAS").val(data.ancientSoulsTotal);
-        $("#inputLgHS").val(data.stats.currentAscension.heroSoulsStart);
+        $("#inputLgHS").val(data.stats.currentAscension.heroSoulsStart == "0" ? data.heroSouls : data.stats.currentAscension.heroSoulsStart);
         $("#xylInput").val(data.outsiders.outsiders[1].level);
         $("#chorInput").val(data.outsiders.outsiders[2].level);
         $("#ponyInput").val(data.outsiders.outsiders[5].level);
         $("#borbInput").val(data.outsiders.outsiders[6].level);
+		$("#dogcogInput").val(data.ancients.ancients[11].level);
         $("#ACInput").val(data.autoclickers);
 		calculateProgression();
 	} else if (txt)
