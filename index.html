@@ -200,7 +200,47 @@
         </div>
         
         <h5 id="inputWarning" class="text-danger"></h5>
-            
+        <style>
+          table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+  }
+        </style>
+    <form>
+      <table>
+        <thead>
+          <tr>
+            <th></th> <!-- Empty header for the row labels -->
+            <th>Option 1</th>
+            <th>Option 2</th>
+            <th>Option 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Row A</td>
+            <td><input type="checkbox" name="rowA_opt1" value="yes"></td>
+            <td><input type="checkbox" name="rowA_opt2" value="yes"></td>
+            <td><input type="checkbox" name="rowA_opt3" value="yes"></td>
+          </tr>
+          <tr>
+            <td>Row B</td>
+            <td><input type="checkbox" name="rowB_opt1" value="yes"></td>
+            <td><input type="checkbox" name="rowB_opt2" value="yes"></td>
+            <td><input type="checkbox" name="rowB_opt3" value="yes"></td>
+          </tr>
+          <tr>
+            <td>Row C</td>
+            <td><input type="checkbox" name="rowC_opt1" value="yes"></td>
+            <td><input type="checkbox" name="rowC_opt2" value="yes"></td>
+            <td><input type="checkbox" name="rowC_opt3" value="yes"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit">Submit</button>
+    </form>
+        
         <div class="row">
             <div class="col table-responsive">
                 <table class="table table-sm table-hover text-center" id="progressTbl">
