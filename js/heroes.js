@@ -1,3 +1,26 @@
+var tsuchiEnabled;
+var skogurEnabled;
+var moeruEnabled;
+var zilarEnabled;
+
+var xav0Enabled;
+var xav1Enabled;
+var xav2Enabled;
+var xav3Enabled;
+var xav4Enabled;
+var xav5Enabled;
+
+var cadu0Enabled;
+var cadu1Enabled;
+var cadu2Enabled;
+var cadu3Enabled;
+var cadu4Enabled;
+
+var ceus0Enabled;
+var ceus1Enabled;
+var ceus2Enabled;
+var ceus3Enabled;
+
 var HEROES_VANILLA = [
     ['Tsuchi', 500, 1.07, 4.0, 0, 426.4],
     ['Skogur', 1000, 1.07, 4.0, 0, 847.4],
