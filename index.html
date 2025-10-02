@@ -206,28 +206,57 @@
             border-collapse: collapse;
             width: 50%;
             margin: 20px auto;
-  }
+          }
+            th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+          }
+          th {
+            background-color: #f2f2f2;
+          }
         </style>
         
     <form>
         <table>
+            <tr>
+                <th>Tsuchi</th>
+                <th>Skogur</th>
+                <th>Moeru</th>
+                <th>Zilar</th>
+                <th>Madzi</th>
+                <th>Xavira</th>
+                <th>Cadu</th>
+                <th>Ceus</th>
+                <th>The Maw</th>
+                <th>Yachiyl</th>
+                <th>Rose</th>
+                <th>Sophia</th>
+                <th>Blanche</th>
+                <th>Dorothy</th>
+            </tr>
           <tr>
             <td>
-              <ul>
+              <ol start = 0>
+                <li><input type='checkbox' name="Tsuchi"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ol>
+            </td>
+            <td>
+              <ul style="list-style-type:none;">
                 <li>Row 1</li>
                 <li>Row 2</li>
                 <li>Row 3</li>
               </ul>
             </td>
             <td>
-              <ul>
-                <li>Row 1</li>
-                <li>Row 2</li>
-                <li>Row 3</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
+              <ul style="list-style-type:none;">
                 <li>Row 1</li>
                 <li>Row 2</li>
                 <li>Row 3</li>
@@ -235,45 +264,7 @@
             </td>
           </tr>
         </table>
-      <!-- <table>
-        <thead>
-          <tr>
-            <th></th>     <!-- I have no idea why google AI put this here
-            
-            <th>Tsuchi</th>
-            <th>Skogur</th>
-            <th>Moeru</th>
-            <th>Zilar</th>
-            <th>Xavira</th>
-            <th>Cadu</th>
-            <th>Ceus</th>
-            <th>The Maw</th>
-            <th>Yachiyl</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>U</td>
-            <td><input type="checkbox" name="rowA_opt1" value="yes"></td>
-            <td><input type="checkbox" name="rowA_opt2" value="yes"></td>
-            <td><input type="checkbox" name="rowA_opt3" value="yes"></td>
-          </tr>
-          <tr>
-            <td>Row B</td>
-            <td><input type="checkbox" name="rowB_opt1" value="yes"></td>
-            <td><input type="checkbox" name="rowB_opt2" value="yes"></td>
-            <td><input type="checkbox" name="rowB_opt3" value="yes"></td>
-          </tr>
-          <tr>
-            <td>Row C</td>
-            <td><input type="checkbox" name="rowC_opt1" value="yes"></td>
-            <td><input type="checkbox" name="rowC_opt2" value="yes"></td>
-            <td><input type="checkbox" name="rowC_opt3" value="yes"></td>
-          </tr>
-        </tbody>
-      </table> -->
-        
+    
     </form>
         
         <div class="row">
