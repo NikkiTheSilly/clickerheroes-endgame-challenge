@@ -1,7 +1,11 @@
+const tsuchiEnabled = document.getElementById("Tsuchi").value == 'enabled' ? True: False
+const skogurEnabled = document.getElementById("Skogur").value == 'enabled' ? True: False
+var moeruEnabled = document.getElementById("Moeru").value == 'enabled' ? True: False
+
 var HEROES_VANILLA = [
-    ['Tsuchi', 500, 1.07, 4.0, 0, 426.4],
-    ['Skogur', 1000, 1.07, 4.0, 0, 847.4],
-    ['Moeru', 2000, 1.07, 4.0, 0, 1680.0],
+    ['Tsuchi', 500, 1.07, 4.0, 0, 426.4, tsuchiEnabled],
+    ['Skogur', 1000, 1.07, 4.0, 0, 847.4, skogurEnabled],
+    ['Moeru', 2000, 1.07, 4.0, 0, 1680.0, moeruEnabled],
     ['Zilar', 4000, 1.07, 4.0, 0, 3334.9],
     ['Madzi', 8000, 1.07, 4.0, 0, 6632.4],
     ['Xavira0', 14000, 1.07, 4.5, 0, 11681.0],
