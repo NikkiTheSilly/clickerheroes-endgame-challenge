@@ -2,7 +2,7 @@ var enabledHeroes = [
     document.getElementById("Tsuchi").value == 'enabled' ? True: False
 
 var HEROES_VANILLA = [
-    ['Wepwawet', 442. 1.07, 4.0, 7000, 395.76]
+    ['Wepwawet', 442, 1.07, 4.0, 7000, 395.76]
     ['Tsuchi', 500, 1.07, 4.0, 0, 426.4],
     ['Skogur', 1000, 1.07, 4.0, 0, 847.4],
     ['Moeru', 2000, 1.07, 4.0, 0, 1680.0],
