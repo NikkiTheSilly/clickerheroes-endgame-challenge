@@ -15,6 +15,7 @@ var borbLimit;
 var cps;
 var gildBonus;
 var classes;
+var HEROES;
 
 var goldBonus140 = Math.log10(1.6 / 1.15) * 139;
 goldBonus140 -= 2; // 1% TCC

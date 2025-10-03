@@ -1,4 +1,4 @@
-const HEROES = [
+const HERO_NAMES = [
   "Tsuchi",
   "Skogur",
   "Moeru",
@@ -64,7 +64,7 @@ const HEROES = [
   "Dorothy5",
 ];
 
-const enabledHeroes = HEROES.map((hero) => $("#" + hero)[0].checked);
+const enabledHeroes = HERO_NAMES.map((hero) => $("#" + hero)[0].checked);
 
 const HEROES_DATA = [
   ["Wep7k+", 235, 1.07, 4.0, 7000, 200.4],
