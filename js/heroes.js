@@ -142,3 +142,4 @@ function removeDisabledHeroes() {
 }
 
 var HEROES_VANILLA = removeDisabledHeroes();
+console.log(HEROES_VANILLA)
