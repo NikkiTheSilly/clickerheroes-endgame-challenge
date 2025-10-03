@@ -131,6 +131,14 @@ const HEROES_DATA = [
     ['Dorothy5', 142200, 1.22, 1000.0, 3235750, 228728.5]
 ]
 
-var HEROES_VANILLA = []
-function removeDisabledHeroes()
+function removeDisabledHeroes() {
+    let enabledHeroes = [];
     for (let i = 0; i < HEROES_DATA.length(); i++) {
+        if (enabledHeroes[i] == True) {
+            enabledHeroes.push(HEROES_DATA[i]);
+        }
+    }
+    return enabledHeroes;
+}
+
+var HEROES_VANILLA = removeDisabledHeroes();
