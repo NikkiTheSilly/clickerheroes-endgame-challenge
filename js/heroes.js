@@ -1,4 +1,5 @@
 const heroStates = {
+  Wepwawet: true,
   Tsuchi: true,
   Skogur: true,
   Moeru: true,
@@ -65,7 +66,7 @@ const heroStates = {
 };
 
 const HEROES_DATA = [
-  ["Wep7k+", 235, 1.07, 4.0, 7000, 200.4],
+  ["Wepwawet", 235, 1.07, 4.0, 7000, 200.4],
   ["Tsuchi", 500, 1.07, 4.0, 0, 426.4],
   ["Skogur", 1000, 1.07, 4.0, 0, 847.4],
   ["Moeru", 2000, 1.07, 4.0, 0, 1680.0],
