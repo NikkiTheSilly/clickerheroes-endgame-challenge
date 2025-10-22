@@ -61,6 +61,7 @@
     ></script>
     <script src="https://unpkg.com/fflate@0.8.2"></script>
 
+    <script defer src="js/createTable.js"></script>
     <script defer src="js/main.js"></script>
     <script defer src="js/heroes.js"></script>
     <script defer src="js/root2.js"></script>
@@ -121,7 +122,6 @@
                       name="versionOptions"
                       checked="checked"
                       id="gameVanilla"
-                      onClick="calculateProgression()"
                     />
                     <label class="form-check-label" for="gameVanilla"
                       >1.0e11</label
@@ -133,7 +133,6 @@
                       type="radio"
                       name="versionOptions"
                       id="gameRoot2"
-                      onClick="calculateProgression()"
                     />
                     <label class="form-check-label" for="gameRoot2"
                       >Root2</label
@@ -373,142 +372,12 @@
         </style> 
         what i want it to look like ^ but i suck at this too much to make it work
         -->
-        <tr>
-          <th>Upgrade No.</th>
-          <th>Tsuchi</th>
-          <th>Skogur</th>
-          <th>Moeru</th>
-          <th>Zilar</th>
-          <th>Madzi</th>
-          <th>Xavira</th>
-          <th>Cadu</th>
-          <th>Ceus</th>
-          <th>The Maw</th>
-          <th>Yachiyl</th>
-          <th>Rose</th>
-          <th>Sophia</th>
-          <th>Blanche</th>
-          <th>Dorothy</th>
-        </tr>
-        <tr>
-          <td>0</td>
-          <td><input type="checkbox" id="Tsuchi" checked /></td>
-          <td><input type="checkbox" id="Skogur" checked /></td>
-          <td><input type="checkbox" id="Moeru" checked /></td>
-          <td><input type="checkbox" id="Zilar" checked /></td>
-          <td><input type="checkbox" id="Madzi" checked /></td>
-          <td><input type="checkbox" id="Xavira0" checked /></td>
-          <td><input type="checkbox" id="Cadu0" checked /></td>
-          <td><input type="checkbox" id="Ceus0" checked /></td>
-          <td><input type="checkbox" id="Maw0" checked /></td>
-          <td><input type="checkbox" id="Yachiyl0" checked /></td>
-          <td><input type="checkbox" id="Rose0" checked /></td>
-          <td><input type="checkbox" id="Sophia0" checked /></td>
-          <td><input type="checkbox" id="Blanche0" checked /></td>
-          <td><input type="checkbox" id="Dorothy0" checked /></td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><input type="checkbox" id="Xavira1" checked /></td>
-          <td><input type="checkbox" id="Cadu1" checked /></td>
-          <td><input type="checkbox" id="Ceus1" checked /></td>
-          <td><input type="checkbox" id="Maw1" checked /></td>
-          <td><input type="checkbox" id="Yachiyl1" checked /></td>
-          <td><input type="checkbox" id="Rose1" checked /></td>
-          <td><input type="checkbox" id="Sophia1" checked /></td>
-          <td><input type="checkbox" id="Blanche1" checked /></td>
-          <td><input type="checkbox" id="Dorothy1" checked /></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><input type="checkbox" id="Xavira2" checked /></td>
-          <td><input type="checkbox" id="Cadu2" checked /></td>
-          <td><input type="checkbox" id="Ceus2" checked /></td>
-          <td><input type="checkbox" id="Maw2" checked /></td>
-          <td><input type="checkbox" id="Yachiyl2" checked /></td>
-          <td><input type="checkbox" id="Rose2" checked /></td>
-          <td><input type="checkbox" id="Sophia2" checked /></td>
-          <td><input type="checkbox" id="Blanche2" checked /></td>
-          <td><input type="checkbox" id="Dorothy2" checked /></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><input type="checkbox" id="Xavira3" checked /></td>
-          <td><input type="checkbox" id="Cadu3" checked /></td>
-          <td><input type="checkbox" id="Ceus3" checked /></td>
-          <td><input type="checkbox" id="Maw3" checked /></td>
-          <td><input type="checkbox" id="Yachiyl3" checked /></td>
-          <td><input type="checkbox" id="Rose3" checked /></td>
-          <td><input type="checkbox" id="Sophia3" checked /></td>
-          <td><input type="checkbox" id="Blanche3" checked /></td>
-          <td><input type="checkbox" id="Dorothy3" checked /></td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><input type="checkbox" id="Xavira4" checked /></td>
-          <td><input type="checkbox" id="Cadu4" checked /></td>
-          <td><input type="checkbox" id="Ceus4" checked /></td>
-          <td><input type="checkbox" id="Maw4" checked /></td>
-          <td><input type="checkbox" id="Yachiyl4" checked /></td>
-          <td><input type="checkbox" id="Rose4" checked /></td>
-          <td><input type="checkbox" id="Sophia4" checked /></td>
-          <td><input type="checkbox" id="Blanche4" checked /></td>
-          <td><input type="checkbox" id="Dorothy4" checked /></td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><input type="checkbox" id="Xavira5" checked /></td>
-          <td></td>
-          <td></td>
-          <td><input type="checkbox" id="Maw5" checked /></td>
-          <td><input type="checkbox" id="Yachiyl5" checked /></td>
-          <td><input type="checkbox" id="Rose5" checked /></td>
-          <td><input type="checkbox" id="Sophia5" checked /></td>
-          <td><input type="checkbox" id="Blanche5" checked /></td>
-          <td><input type="checkbox" id="Dorothy5" checked /></td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><input type="checkbox" id="Maw6" checked /></td>
-          <td><input type="checkbox" id="Yachiyl6" checked /></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        <thead>
+          <!-- dynamically generated -->
+        </thead>
+        <tbody>
+          <!-- dynamically generated -->
+        </tbody>
       </table>
       <style>
         table {

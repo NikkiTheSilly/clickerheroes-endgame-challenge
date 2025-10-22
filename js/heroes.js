@@ -1,4 +1,4 @@
-const heroStates = {
+const heroStatesVanilla = {
   Tsuchi: true,
   Skogur: true,
   Moeru: true,
@@ -64,7 +64,24 @@ const heroStates = {
   Dorothy5: true,
 };
 
-const HEROES_DATA = [
+const VANILLA_BASE_HERO_NAMES = [
+  "Tsuchi",
+  "Skogur",
+  "Moeru",
+  "Zilar",
+  "Madzi",
+  "Xavira",
+  "Cadu",
+  "Ceus",
+  "Maw",
+  "Yachiyl",
+  "Rose",
+  "Sophia",
+  "Blanche",
+  "Dorothy",
+];
+
+const HEROES_DATA_VANILLA = [
   ["Wep7k+", 235, 1.07, 4.0, 7000, 200.4],
   ["Tsuchi", 500, 1.07, 4.0, 0, 426.4],
   ["Skogur", 1000, 1.07, 4.0, 0, 847.4],
@@ -131,17 +148,39 @@ const HEROES_DATA = [
   ["Dorothy5", 142200, 1.22, 1000.0, 3235750, 228728.5],
 ];
 
-function removeDisabledHeroes() {
-  return HEROES_DATA.filter((hero) => heroStates[hero[0]]);
+const MAX_VANILLA_UPGRADE_NUMBER = HEROES_DATA_VANILLA.reduce((max, hero) => {
+  if (hero[0] === "Wep7k") {
+    return max;
+  }
+
+  const upgradeNumber = parseInt(hero[0].at(-1));
+
+  // Rose3 -> "3" -> 3
+  // Tsuchi -> "i" -> NaN -> 0
+  return Math.max(max, isNaN(upgradeNumber) ? 0 : upgradeNumber);
+}, 0);
+
+const UPGRADELESS_HEROES_VANILLA = [
+  "Tsuchi",
+  "Skogur",
+  "Moeru",
+  "Zilar",
+  "Madzi",
+];
+
+function removeDisabledHeroes(heroData, heroStates) {
+  return heroData.filter((hero) => heroStates[hero[0]]);
 }
 
-let HEROES_VANILLA = removeDisabledHeroes();
+createTable(
+  VANILLA_BASE_HERO_NAMES,
+  HEROES_DATA_VANILLA,
+  heroStatesVanilla,
+  MAX_VANILLA_UPGRADE_NUMBER,
+  UPGRADELESS_HEROES_VANILLA
+);
 
-$("#heroes input").on("change", null, undefined, () => {
-  Object.keys(heroStates).forEach((hero) => {
-    heroStates[hero] = $("#" + hero)[0].checked;
-  });
-
-  HEROES_VANILLA = removeDisabledHeroes();
-  calculateProgression();
-});
+let HEROES_VANILLA = removeDisabledHeroes(
+  HEROES_DATA_VANILLA,
+  heroStatesVanilla
+);
