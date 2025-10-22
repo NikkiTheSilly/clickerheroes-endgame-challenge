@@ -1,5 +1,4 @@
 const heroStates = {
-  Wepwawet: true,
   Tsuchi: true,
   Skogur: true,
   Moeru: true,
