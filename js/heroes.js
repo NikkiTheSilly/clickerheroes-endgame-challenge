@@ -1,4 +1,5 @@
 const heroStatesVanilla = {
+  Wepwawet: true,
   Tsuchi: true,
   Skogur: true,
   Moeru: true,
@@ -82,7 +83,7 @@ const VANILLA_BASE_HERO_NAMES = [
 ];
 
 const HEROES_DATA_VANILLA = [
-  ["Wep7k+", 235, 1.07, 4.0, 7000, 200.4],
+  ["Wepwawet", 235, 1.07, 4.0, 7000, 200.4],
   ["Tsuchi", 500, 1.07, 4.0, 0, 426.4],
   ["Skogur", 1000, 1.07, 4.0, 0, 847.4],
   ["Moeru", 2000, 1.07, 4.0, 0, 1680.0],
@@ -149,10 +150,6 @@ const HEROES_DATA_VANILLA = [
 ];
 
 const MAX_VANILLA_UPGRADE_NUMBER = HEROES_DATA_VANILLA.reduce((max, hero) => {
-  if (hero[0] === "Wep7k") {
-    return max;
-  }
-
   const upgradeNumber = parseInt(hero[0].at(-1));
 
   // Rose3 -> "3" -> 3

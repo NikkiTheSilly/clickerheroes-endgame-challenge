@@ -3,7 +3,8 @@ function createTable(
   heroData,
   heroStates,
   maxUpgradeNumber,
-  upgradelessHeroes
+  upgradelessHeroes,
+  lockHeroes = []
 ) {
   const header = $("#heroes thead");
   const body = $("#heroes tbody");
@@ -36,7 +37,9 @@ function createTable(
 
       addedHeroes.add(upgradeName);
 
-      row += `<td><input type="checkbox" id="${upgradeName}" checked /></td>`;
+      row += `<td><input type="checkbox" id="${upgradeName}" checked ${
+        lockHeroes.includes(upgradeName) ? "disabled" : ""
+      } /></td>`;
     }
 
     row += "</tr>";
@@ -45,7 +48,11 @@ function createTable(
 
   $("#heroes input").on("change", null, undefined, () => {
     Object.keys(heroStates).forEach((hero) => {
-      heroStates[hero] = $("#" + hero)[0].checked;
+      const checkbox = $("#" + hero)[0];
+
+      if (checkbox) {
+        heroStates[hero] = checkbox.checked;
+      }
     });
 
     const root2 = $("#gameRoot2").prop("checked");
@@ -72,7 +79,8 @@ $("#gameVanilla, #gameRoot2").on("click", null, undefined, () => {
       HEROES_DATA_ROOT2,
       heroStatesRoot2,
       MAX_ROOT2_UPGRADE_NUMBER,
-      UPGRADELESS_HEROES_ROOT2
+      UPGRADELESS_HEROES_ROOT2,
+      ["Dread0"]
     );
 
     HEROES_ROOT2 = removeDisabledHeroes(HEROES_DATA_ROOT2, heroStatesRoot2);
