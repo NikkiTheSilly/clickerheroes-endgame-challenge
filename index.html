@@ -1,27 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="See what zone you can reach on your current and future ascensions">
-    <meta name="keywords" content="Clicker Heroes, CH, zone, progression, calculator">
-    <meta property="og:description" content="See what zone you can reach on your current and future ascensions">
-    <meta property="og:site_name" content="Clicker Heroes - Progression Calculator">
-    <meta property="og:title" content="Clicker Heroes - Progression Calculator">
-    <meta property=”og:type” content=”website”>
-    <meta property="og:image" content="https://fuws.github.io/clickerheroes-endgame/Kumawakamaru.png">
-    <meta property="og:url" content="https://fuws.github.io/clickerheroes-endgame/">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="Kumawakamaru.png">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" id="theme" href="css/darkmode.css">
-    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="See what zone you can reach on your current and future ascensions"
+    />
+    <meta
+      name="keywords"
+      content="Clicker Heroes, CH, zone, progression, calculator"
+    />
+    <meta
+      property="og:description"
+      content="See what zone you can reach on your current and future ascensions"
+    />
+    <meta
+      property="og:site_name"
+      content="Clicker Heroes - Progression Calculator"
+    />
+    <meta
+      property="og:title"
+      content="Clicker Heroes - Progression Calculator"
+    />
+    <meta property="”og:type”" content="”website”" />
+    <meta
+      property="og:image"
+      content="https://fuws.github.io/clickerheroes-endgame/Kumawakamaru.png"
+    />
+    <meta
+      property="og:url"
+      content="https://fuws.github.io/clickerheroes-endgame/"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="Kumawakamaru.png" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" id="theme" href="css/darkmode.css" />
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://unpkg.com/fflate@0.8.2"></script>
 
     <script defer src="js/main.js"></script>
@@ -30,196 +67,297 @@
     <script defer src="js/readSave.js"></script>
 
     <script>
-        function changeTheme() {
-            var theme = document.getElementById("theme");
-            if (theme.getAttribute('href') == 'css/lightmode.css') {
-                theme.setAttribute('href', 'css/darkmode.css');
-            } else {
-                theme.setAttribute('href', 'css/lightmode.css');
-            }
+      function changeTheme() {
+        var theme = document.getElementById("theme");
+        if (theme.getAttribute("href") == "css/lightmode.css") {
+          theme.setAttribute("href", "css/darkmode.css");
+        } else {
+          theme.setAttribute("href", "css/lightmode.css");
         }
+      }
     </script>
 
     <title>Clicker Heroes Mid/End Game Progression Calculator</title>
-
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h3 class="text-center">Clicker Heroes Mid/End Game Progression</h3>
-                <h6 class="text-center">Game Version: 1.0e11. Modified by <a href="https://www.reddit.com/user/driej/">/u/driej</a> and <a href="https://discord.com/users/1071541204321312860">Nikki</a></h6>
-            </div>
+      <div class="row">
+        <div class="col">
+          <h3 class="text-center">Clicker Heroes Mid/End Game Progression</h3>
+          <h6 class="text-center">
+            Game Version: 1.0e11. Modified by
+            <a href="https://www.reddit.com/user/driej/">/u/driej</a> and
+            <a href="https://discord.com/users/1071541204321312860">Nikki</a>
+          </h6>
         </div>
-        <div class="row pb-2">
-            <div class="col">
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <p>
-                            <br>This is a modified version of the calculator. Here is the <a href="https://fuws.github.io/clickerheroes-endgame/">Original progression calculator</a>
-                            made by <a href="https://www.reddit.com/user/qubit64/">/u/qubit64</a></h6>
-                        </p>
-                    </div>
+      </div>
+      <div class="row pb-2">
+        <div class="col">
+          <div class="card border-primary">
+            <div class="card-body">
+              <p>
+                <br />This is a modified version of the calculator. Here is the
+                <a href="https://fuws.github.io/clickerheroes-endgame/"
+                  >Original progression calculator</a
+                >
+                made by
+                <a href="https://www.reddit.com/user/qubit64/">/u/qubit64</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pb-2 font-weight-bold">
+        <div class="col">
+          <div class="card border-primary">
+            <div class="card-body">
+              <div class="row text-center">
+                <div class="col">
+                  <span class="align-top">Game Version: &nbsp;&nbsp;</span>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="versionOptions"
+                      checked="checked"
+                      id="gameVanilla"
+                      onClick="calculateProgression()"
+                    />
+                    <label class="form-check-label" for="gameVanilla"
+                      >1.0e11</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="versionOptions"
+                      id="gameRoot2"
+                      onClick="calculateProgression()"
+                    />
+                    <label class="form-check-label" for="gameRoot2"
+                      >Root2</label
+                    >
+                  </div>
+                  <br /><button class="buttonTheme" onclick="changeTheme()">
+                    Toggle dark mode
+                  </button>
                 </div>
-            </div>
-        </div>
-        <div class="row pb-2 font-weight-bold">
-            <div class="col">  
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <div class="row text-center">
-                            <div class="col">
-                                <span class="align-top">Game Version: &nbsp;&nbsp;</span>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="versionOptions" checked="checked" id="gameVanilla" onClick="calculateProgression()">
-                                    <label class="form-check-label" for="gameVanilla">1.0e11</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="versionOptions" id="gameRoot2" onClick="calculateProgression()">
-                                    <label class="form-check-label" for="gameRoot2">Root2</label>
-                                </div>
-                                <br><button class="buttonTheme" onclick="changeTheme()" >Toggle dark mode</button>
-                            </div>
-                        </div>
-                        <div class="row pt-2">
-                            <div class="col-sm-6">
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="inputAS" data-toggle="tooltip" title="For TP calculation only">AS:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" placeholder="Ancient Souls" id="inputAS">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="inputLgHS" data-toggle="tooltip" 
-                                               title="log10 HS. It's the number after the 'e' in scientific notation">LgHS:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" placeholder="Log10 Hero Souls" id="inputLgHS">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row pt-2">
-                            <div class="col-sm-6">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <button type="button" class="btn btn-primary btn-block" id="calc" onclick="calculateProgression()">Calculate</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="outputTP">TP:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" id="outputTP" value=0 disabled>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-sm-6">
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label
+                        for="inputAS"
+                        data-toggle="tooltip"
+                        title="For TP calculation only"
+                        >AS:</label
+                      >
                     </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row font-weight-bold">
-            <div class="col">
-                <div class="card border-primary">
-                    <div class="card-body">
-                    
-                        <div class="row pt-2">
-                            <div class="col-sm-6">
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="Xyliqil" data-toggle="tooltip">Xyliqil:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" placeholder="Xyliqil level" id="xylInput" value=0>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="Chorgorloth" data-toggle="tooltip">Chorgorloth:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" placeholder="Chorgorloth level" id="chorInput" value=0>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="Ponyboy" data-toggle="tooltip">Ponyboy:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" placeholder="Ponyboy level" id="ponyInput" value=30>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="SaveGame" data-toggle="tooltip">Import Save:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" placeholder="Paste your Save Here" id="saveInput" spellcheck="false" value="" onblur="readSave()">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="Borb" data-toggle="tooltip">Borb:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" placeholder="Borb level" id="borbInput" value=0>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="Dogcog" data-toggle="tooltip">Dogcog:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" placeholder="Dogcog" id="dogcogInput" value=0>
-                                    </div>
-                                </div>
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <label for="Autoclickers" data-toggle="tooltip">Autoclickers:</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="form-control" placeholder="Autoclickers" id="ACInput" value=0>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        placeholder="Ancient Souls"
+                        id="inputAS"
+                      />
                     </div>
+                  </div>
                 </div>
+                <div class="col-sm-6">
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label
+                        for="inputLgHS"
+                        data-toggle="tooltip"
+                        title="log10 HS. It's the number after the 'e' in scientific notation"
+                        >LgHS:</label
+                      >
+                    </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        placeholder="Log10 Hero Souls"
+                        id="inputLgHS"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-sm-6">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-block"
+                        id="calc"
+                        onclick="calculateProgression()"
+                      >
+                        Calculate
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label for="outputTP">TP:</label>
+                    </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        id="outputTP"
+                        value="0"
+                        disabled
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        
-        <h5 id="inputWarning" class="text-danger"></h5>
-    <style>
-          table {
-            border-collapse: collapse;
-            width: 50%;
-            margin: 20px auto;
-          }
-            th, td {
-            border: 1px solid #ccc;
-            border-bottom: none;
-            padding: 8px;
-            text-align: center;
-            color: #d9d9d9;
-            background-color: #121212;
-                
-          }
-        </style>    
+      </div>
 
-    <!-- checkbox table -->
-    <table id="heroes">
+      <div class="row font-weight-bold">
+        <div class="col">
+          <div class="card border-primary">
+            <div class="card-body">
+              <div class="row pt-2">
+                <div class="col-sm-6">
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label for="Xyliqil" data-toggle="tooltip"
+                        >Xyliqil:</label
+                      >
+                    </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        placeholder="Xyliqil level"
+                        id="xylInput"
+                        value="0"
+                      />
+                    </div>
+                  </div>
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label for="Chorgorloth" data-toggle="tooltip"
+                        >Chorgorloth:</label
+                      >
+                    </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        placeholder="Chorgorloth level"
+                        id="chorInput"
+                        value="0"
+                      />
+                    </div>
+                  </div>
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label for="Ponyboy" data-toggle="tooltip"
+                        >Ponyboy:</label
+                      >
+                    </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        placeholder="Ponyboy level"
+                        id="ponyInput"
+                        value="30"
+                      />
+                    </div>
+                  </div>
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label for="SaveGame" data-toggle="tooltip"
+                        >Import Save:</label
+                      >
+                    </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        placeholder="Paste your Save Here"
+                        id="saveInput"
+                        spellcheck="false"
+                        value=""
+                        onblur="readSave()"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label for="Borb" data-toggle="tooltip">Borb:</label>
+                    </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        placeholder="Borb level"
+                        id="borbInput"
+                        value="0"
+                      />
+                    </div>
+                  </div>
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label for="Dogcog" data-toggle="tooltip">Dogcog:</label>
+                    </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        placeholder="Dogcog"
+                        id="dogcogInput"
+                        value="0"
+                      />
+                    </div>
+                  </div>
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label for="Autoclickers" data-toggle="tooltip"
+                        >Autoclickers:</label
+                      >
+                    </div>
+                    <div class="col-8">
+                      <input
+                        class="form-control"
+                        placeholder="Autoclickers"
+                        id="ACInput"
+                        value="0"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h5 id="inputWarning" class="text-danger"></h5>
+      <style>
+        table {
+          border-collapse: collapse;
+          width: 50%;
+          margin: 20px auto;
+        }
+        th,
+        td {
+          border: 1px solid #ccc;
+          border-bottom: none;
+          padding: 8px;
+          text-align: center;
+          color: #d9d9d9;
+          background-color: #121212;
+        }
+      </style>
+
+      <!-- checkbox table -->
+      <table id="heroes">
         <!-- <style>
             th, td {
             border: 1px solid #ccc;
@@ -236,181 +374,182 @@
         what i want it to look like ^ but i suck at this too much to make it work
         -->
         <tr>
-            <th>Upgrade No.</th>
-            <th> Tsuchi </th>
-            <th> Skogur </th>
-            <th>  Moeru  </th>
-            <th>  Zilar  </th>
-            <th>  Madzi  </th>
-            <th> Xavira </th>
-            <th>  Cadu  </th>
-            <th>  Ceus  </th>
-            <th>The Maw</th>
-            <th>Yachiyl</th>
-            <th>  Rose  </th>
-            <th> Sophia </th>
-            <th>Blanche</th>
-            <th>Dorothy</th>
+          <th>Upgrade No.</th>
+          <th>Tsuchi</th>
+          <th>Skogur</th>
+          <th>Moeru</th>
+          <th>Zilar</th>
+          <th>Madzi</th>
+          <th>Xavira</th>
+          <th>Cadu</th>
+          <th>Ceus</th>
+          <th>The Maw</th>
+          <th>Yachiyl</th>
+          <th>Rose</th>
+          <th>Sophia</th>
+          <th>Blanche</th>
+          <th>Dorothy</th>
         </tr>
         <tr>
-            <td>0</td>
-            <td><input type='checkbox' id='Tsuchi' checked></td>
-            <td><input type='checkbox' id='Skogur' checked></td>
-            <td><input type='checkbox' id='Moeru' checked></td>
-            <td><input type='checkbox' id='Zilar' checked></td>
-            <td><input type='checkbox' id='Madzi' checked></td>
-            <td><input type='checkbox' id='Xavira0' checked></td>
-            <td><input type='checkbox' id='Cadu0' checked></td>
-            <td><input type='checkbox' id='Ceus0' checked></td>
-            <td><input type='checkbox' id='Maw0' checked></td>
-            <td><input type='checkbox' id='Yachiyl0' checked></td>
-            <td><input type='checkbox' id='Rose0' checked></td>
-            <td><input type='checkbox' id='Sophia0' checked></td>
-            <td><input type='checkbox' id='Blanche0' checked></td>
-            <td><input type='checkbox' id='Dorothy0' checked></td>
+          <td>0</td>
+          <td><input type="checkbox" id="Tsuchi" checked /></td>
+          <td><input type="checkbox" id="Skogur" checked /></td>
+          <td><input type="checkbox" id="Moeru" checked /></td>
+          <td><input type="checkbox" id="Zilar" checked /></td>
+          <td><input type="checkbox" id="Madzi" checked /></td>
+          <td><input type="checkbox" id="Xavira0" checked /></td>
+          <td><input type="checkbox" id="Cadu0" checked /></td>
+          <td><input type="checkbox" id="Ceus0" checked /></td>
+          <td><input type="checkbox" id="Maw0" checked /></td>
+          <td><input type="checkbox" id="Yachiyl0" checked /></td>
+          <td><input type="checkbox" id="Rose0" checked /></td>
+          <td><input type="checkbox" id="Sophia0" checked /></td>
+          <td><input type="checkbox" id="Blanche0" checked /></td>
+          <td><input type="checkbox" id="Dorothy0" checked /></td>
         </tr>
         <tr>
-            <td>1</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><input type='checkbox' id='Xavira1' checked></td>
-            <td><input type='checkbox' id='Cadu1' checked></td>
-            <td><input type='checkbox' id='Ceus1' checked></td>
-            <td><input type='checkbox' id='Maw1' checked></td>
-            <td><input type='checkbox' id='Yachiyl1' checked></td>
-            <td><input type='checkbox' id='Rose1' checked></td>
-            <td><input type='checkbox' id='Sophia1' checked></td>
-            <td><input type='checkbox' id='Blanche1' checked></td>
-            <td><input type='checkbox' id='Dorothy1' checked></td>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" id="Xavira1" checked /></td>
+          <td><input type="checkbox" id="Cadu1" checked /></td>
+          <td><input type="checkbox" id="Ceus1" checked /></td>
+          <td><input type="checkbox" id="Maw1" checked /></td>
+          <td><input type="checkbox" id="Yachiyl1" checked /></td>
+          <td><input type="checkbox" id="Rose1" checked /></td>
+          <td><input type="checkbox" id="Sophia1" checked /></td>
+          <td><input type="checkbox" id="Blanche1" checked /></td>
+          <td><input type="checkbox" id="Dorothy1" checked /></td>
         </tr>
         <tr>
-            <td>2</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><input type='checkbox' id='Xavira2' checked></td>
-            <td><input type='checkbox' id='Cadu2' checked></td>
-            <td><input type='checkbox' id='Ceus2' checked></td>
-            <td><input type='checkbox' id='Maw2' checked></td>
-            <td><input type='checkbox' id='Yachiyl2' checked></td>
-            <td><input type='checkbox' id='Rose2' checked></td>
-            <td><input type='checkbox' id='Sophia2' checked></td>
-            <td><input type='checkbox' id='Blanche2' checked></td>
-            <td><input type='checkbox' id='Dorothy2' checked></td>
+          <td>2</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" id="Xavira2" checked /></td>
+          <td><input type="checkbox" id="Cadu2" checked /></td>
+          <td><input type="checkbox" id="Ceus2" checked /></td>
+          <td><input type="checkbox" id="Maw2" checked /></td>
+          <td><input type="checkbox" id="Yachiyl2" checked /></td>
+          <td><input type="checkbox" id="Rose2" checked /></td>
+          <td><input type="checkbox" id="Sophia2" checked /></td>
+          <td><input type="checkbox" id="Blanche2" checked /></td>
+          <td><input type="checkbox" id="Dorothy2" checked /></td>
         </tr>
         <tr>
-            <td>3</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><input type='checkbox' id='Xavira3' checked></td>
-            <td><input type='checkbox' id='Cadu3' checked></td>
-            <td><input type='checkbox' id='Ceus3' checked></td>
-            <td><input type='checkbox' id='Maw3' checked></td>
-            <td><input type='checkbox' id='Yachiyl3' checked></td>
-            <td><input type='checkbox' id='Rose3' checked></td>
-            <td><input type='checkbox' id='Sophia3' checked></td>
-            <td><input type='checkbox' id='Blanche3' checked></td>
-            <td><input type='checkbox' id='Dorothy3' checked></td>
+          <td>3</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" id="Xavira3" checked /></td>
+          <td><input type="checkbox" id="Cadu3" checked /></td>
+          <td><input type="checkbox" id="Ceus3" checked /></td>
+          <td><input type="checkbox" id="Maw3" checked /></td>
+          <td><input type="checkbox" id="Yachiyl3" checked /></td>
+          <td><input type="checkbox" id="Rose3" checked /></td>
+          <td><input type="checkbox" id="Sophia3" checked /></td>
+          <td><input type="checkbox" id="Blanche3" checked /></td>
+          <td><input type="checkbox" id="Dorothy3" checked /></td>
         </tr>
         <tr>
-            <td>4</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><input type='checkbox' id='Xavira4' checked></td>
-            <td><input type='checkbox' id='Cadu4' checked></td>
-            <td><input type='checkbox' id='Ceus4' checked></td>
-            <td><input type='checkbox' id='Maw4' checked></td>
-            <td><input type='checkbox' id='Yachiyl4' checked></td>
-            <td><input type='checkbox' id='Rose4' checked></td>
-            <td><input type='checkbox' id='Sophia4' checked></td>
-            <td><input type='checkbox' id='Blanche4' checked></td>
-            <td><input type='checkbox' id='Dorothy4' checked></td>
+          <td>4</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" id="Xavira4" checked /></td>
+          <td><input type="checkbox" id="Cadu4" checked /></td>
+          <td><input type="checkbox" id="Ceus4" checked /></td>
+          <td><input type="checkbox" id="Maw4" checked /></td>
+          <td><input type="checkbox" id="Yachiyl4" checked /></td>
+          <td><input type="checkbox" id="Rose4" checked /></td>
+          <td><input type="checkbox" id="Sophia4" checked /></td>
+          <td><input type="checkbox" id="Blanche4" checked /></td>
+          <td><input type="checkbox" id="Dorothy4" checked /></td>
         </tr>
         <tr>
-            <td>5</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><input type='checkbox' id='Xavira5' checked></td>
-            <td></td>
-            <td></td>
-            <td><input type='checkbox' id='Maw5' checked></td>
-            <td><input type='checkbox' id='Yachiyl5' checked></td>
-            <td><input type='checkbox' id='Rose5' checked></td>
-            <td><input type='checkbox' id='Sophia5' checked></td>
-            <td><input type='checkbox' id='Blanche5' checked></td>
-            <td><input type='checkbox' id='Dorothy5' checked></td>
+          <td>5</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" id="Xavira5" checked /></td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" id="Maw5" checked /></td>
+          <td><input type="checkbox" id="Yachiyl5" checked /></td>
+          <td><input type="checkbox" id="Rose5" checked /></td>
+          <td><input type="checkbox" id="Sophia5" checked /></td>
+          <td><input type="checkbox" id="Blanche5" checked /></td>
+          <td><input type="checkbox" id="Dorothy5" checked /></td>
         </tr>
         <tr>
-            <td>6</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><input type='checkbox' id='Maw6' checked></td>
-            <td><input type='checkbox' id='Yachiyl6' checked></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <td>6</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" id="Maw6" checked /></td>
+          <td><input type="checkbox" id="Yachiyl6" checked /></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
-    </table>
-    <style>
-          table {
-            border-collapse: collapse;
-            width: 50%;
-            margin: 20px auto;
-          }
-            th, td {
-            border: 1px solid #ccc;
-            border-right: none;
-            border-left:none;
-            padding: 8px;
-            text-align: center;
-            color: #d9d9d9;
-            background-color: #121212;
-                
-          }
-        </style>
+      </table>
+      <style>
+        table {
+          border-collapse: collapse;
+          width: 50%;
+          margin: 20px auto;
+        }
+        th,
+        td {
+          border: 1px solid #ccc;
+          border-right: none;
+          border-left: none;
+          padding: 8px;
+          text-align: center;
+          color: #d9d9d9;
+          background-color: #121212;
+        }
+      </style>
 
-        <div class="row">
-            <div class="col table-responsive">
-                <table class="table table-sm table-hover text-center" id="progressTbl">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Asc#</th>
-                            <th>LgHS</th>
-                            <th>Hero</th>
-                            <th>Zone</th>
-                            <th>HeroLv</th>
-                            <th>+LgHS</th>
-                            <th>TLMaxZone</th>
-                            <th>Duration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+      <div class="row">
+        <div class="col table-responsive">
+          <table
+            class="table table-sm table-hover text-center"
+            id="progressTbl"
+          >
+            <thead class="thead-dark">
+              <tr>
+                <th>Asc#</th>
+                <th>LgHS</th>
+                <th>Hero</th>
+                <th>Zone</th>
+                <th>HeroLv</th>
+                <th>+LgHS</th>
+                <th>TLMaxZone</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
